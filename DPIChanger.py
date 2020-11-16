@@ -13,6 +13,7 @@ class DPIChanger():
         self.window.geometry(f'{xSize}x{ySize}')
         self.window.title(winTitle)
         self.window.iconbitmap("ImageDPI.ico")
+        self.window.resizable(False, False)
         self.chooseImageButton = Button(text="Choose Image", bd=3, command=self.chooseImageFunc)
         self.chooseImageButton.place(x=23, y=20)
         self.chooseSaveTo = Button(text="Choose where to save to", bd=3, command=self.chooseSaveFunc)
@@ -40,10 +41,13 @@ class DPIChanger():
         messagebox.showinfo("Folder", self.savedFolder)
 
     def changeDPI(self):
-        self.scaleNum = self.dpiScale.get()
-        self.scaleNumTwo = self.dpiScaleTwo.get()
-        self.theNewImage = PILImage.open(self.getImage)
-        self.theNewImage.save(self.savedFolder + "/" + self.newImageEntry.get() + "." + self.imageExtension , dpi=(self.scaleNum, self.scaleNumTwo))
-        messagebox.showinfo("Saved", self.savedFolder + "/" + self.newImageEntry.get() + "." + self.imageExtension)
+        try:
+            self.scaleNum = self.dpiScale.get()
+            self.scaleNumTwo = self.dpiScaleTwo.get()
+            self.theNewImage = PILImage.open(self.getImage)
+            self.theNewImage.save(self.savedFolder + "/" + self.newImageEntry.get() + "." + self.imageExtension , dpi=(self.scaleNum, self.scaleNumTwo))
+            messagebox.showinfo("Saved", self.savedFolder + "/" + self.newImageEntry.get() + "." + self.imageExtension)
+        except:
+            messagebox.showwarning("Error", "Something went wrong")
     
 DPIGUI = DPIChanger("Change DPI", 350, 200)
