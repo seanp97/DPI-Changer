@@ -16,7 +16,7 @@ class DPIChanger():
         self.window.resizable(False, False)
         self.chooseImageButton = Button(text="Choose Image", bd=3, command=self.chooseImageFunc)
         self.chooseImageButton.place(x=23, y=20)
-        self.chooseSaveTo = Button(text="Choose where to save to", bd=3, command=self.chooseSaveFunc)
+        self.chooseSaveTo = Button(text="Choose folder to save to", bd=3, command=self.chooseSaveFunc)
         self.chooseSaveTo.place(x=150, y=20)
         self.dpiScale = Scale(from_=5000, to=0)
         self.dpiScale.place(x=0, y=70)
